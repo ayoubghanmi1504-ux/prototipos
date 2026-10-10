@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER 84 | Barber & Grooming</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gold-text { color: #D4AF37; }
+        .gold-bg { background-color: #D4AF37; }
+        .gold-border { border-color: #D4AF37; }
+        .hover-gold:hover { background-color: #B5952F; color: white; }
+    </style>
+</head>
+<body class="bg-[#111111] text-gray-300 font-sans antialiased">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 w-full z-50 bg-[#111111]/95 backdrop-blur-md border-b border-gray-800 transition-all duration-300">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black tracking-widest text-white uppercase">
+                ATELIER <span class="gold-text">84</span>
+            </a>
+            
+            <nav class="hidden md:flex gap-8 text-sm font-bold tracking-widest uppercase">
+                <a href="#services" class="hover:text-[#D4AF37] transition">Prestations</a>
+                <a href="#galerie" class="hover:text-[#D4AF37] transition">Réalisations</a>
+                <a href="#contact" class="hover:text-[#D4AF37] transition">Contact</a>
+            </nav>
+            
+            <a href="#reservation" class="gold-bg text-black px-6 py-2.5 rounded-sm font-bold text-sm tracking-wider uppercase hover-gold transition shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                Réserver
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative w-full h-[90vh] min-h-[600px] flex items-center mt-20">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=2000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-30 grayscale">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/50"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <p class="gold-text font-bold tracking-[0.3em] uppercase text-sm mb-4">Salon de Coiffure & Barbier</p>
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter leading-tight">
+                L'Art du Soin <br>au Masculin
+            </h1>
+            <p class="text-gray-400 max-w-lg mx-auto mb-10 text-lg">
+                Plus qu'une simple coupe, une véritable expérience de détente. Maîtres barbiers au cœur de Casablanca.
+            </p>
+            <a href="#reservation" class="inline-block gold-bg text-black px-10 py-4 font-black uppercase tracking-widest hover-gold transition rounded-sm">
+                Prendre Rendez-vous
+            </a>
+        </div>
+    </section>
+
+    <!-- TARJETAS DE SERVICIOS -->
+    <section id="services" class="py-24 bg-[#111111]">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-white uppercase tracking-widest">Notre Carte</h2>
+                <div class="w-12 h-1 gold-bg mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="border border-gray-800 p-8 hover:border-[#D4AF37] transition duration-300 group bg-[#161616]">
+                    <div class="flex justify-between items-end mb-4">
+                        <h3 class="text-xl font-bold text-white uppercase">Coupe Classique</h3>
+                        <span class="gold-text font-black text-xl">150 DH</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">Conseil visagiste, shampoing avec massage crânien, coupe aux ciseaux ou tondeuse et coiffage premium.</p>
+                    <p class="text-xs text-gray-600 font-bold uppercase tracking-wider"><i class="fa-regular fa-clock mr-1"></i> 45 Minutes</p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="border border-[#D4AF37] p-8 bg-[#1a1813] relative overflow-hidden">
+                    <span class="absolute top-4 right-[-30px] gold-bg text-black text-[10px] font-black uppercase tracking-widest py-1 px-10 rotate-45">Populaire</span>
+                    <div class="flex justify-between items-end mb-4">
+                        <h3 class="text-xl font-bold text-white uppercase">Rituel Barbe</h3>
+                        <span class="gold-text font-black text-xl">120 DH</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Taille de barbe, rituel aux serviettes chaudes, rasage des contours au coupe-chou et huiles essentielles.</p>
+                    <p class="text-xs text-[#D4AF37] font-bold uppercase tracking-wider"><i class="fa-regular fa-clock mr-1"></i> 30 Minutes</p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="border border-gray-800 p-8 hover:border-[#D4AF37] transition duration-300 group bg-[#161616]">
+                    <div class="flex justify-between items-end mb-4">
+                        <h3 class="text-xl font-bold text-white uppercase">Forfait Prestige</h3>
+                        <span class="gold-text font-black text-xl">250 DH</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">L'expérience complète. Coupe de cheveux classique combinée au Rituel Barbe traditionnel et boisson offerte.</p>
+                    <p class="text-xs text-gray-600 font-bold uppercase tracking-wider"><i class="fa-regular fa-clock mr-1"></i> 1 Heure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE RESERVA (FORMULARIO A WHATSAPP) -->
+    <section id="reservation" class="py-24 bg-[#161616] border-y border-gray-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-[#111111] border border-gray-800 p-8 md:p-12 rounded-sm shadow-2xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-black text-white uppercase tracking-widest">Réservez votre Créneau</h2>
+                    <p class="text-gray-500 mt-3 text-sm">Remplissez les détails ci-dessous et nous vous confirmerons votre rendez-vous via WhatsApp.</p>
+                </div>
+
+                <form id="booking-form" onsubmit="envoyerReservation(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Nom & Prénom</label>
+                            <input type="text" id="nom" required class="w-full bg-[#161616] border border-gray-800 text-white px-4 py-3 focus:outline-none focus:border-[#D4AF37] transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Prestation souhaitée</label>
+                            <select id="prestation" required class="w-full bg-[#161616] border border-gray-800 text-white px-4 py-3 focus:outline-none focus:border-[#D4AF37] transition appearance-none">
+                                <option value="Coupe Classique">Coupe Classique (150 DH)</option>
+                                <option value="Rituel Barbe">Rituel Barbe (120 DH)</option>
+                                <option value="Forfait Prestige">Forfait Prestige (250 DH)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Date du rendez-vous</label>
+                            <input type="date" id="date" required class="w-full bg-[#161616] border border-gray-800 text-white px-4 py-3 focus:outline-none focus:border-[#D4AF37] transition [color-scheme:dark]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Créneau préféré</label>
+                            <select id="heure" required class="w-full bg-[#161616] border border-gray-800 text-white px-4 py-3 focus:outline-none focus:border-[#D4AF37] transition appearance-none">
+                                <option value="Matin (10:00 - 14:00)">Matin (10:00 - 14:00)</option>
+                                <option value="Après-midi (15:00 - 20:00)">Après-midi (15:00 - 20:00)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full gold-bg text-black font-black uppercase tracking-widest py-4 mt-8 hover-gold transition flex justify-center items-center gap-3 rounded-sm">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Confirmer par WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- UBICACIÓN Y FOOTER -->
+    <footer id="contact" class="bg-[#111111] pt-20 pb-10">
+        <div class="container mx-auto px-6 max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+            <div>
+                <h3 class="text-xl font-black text-white uppercase tracking-widest mb-6">Où nous trouver</h3>
+                <p class="text-gray-400 mb-2"><i class="fa-solid fa-location-dot gold-text w-6"></i> Boulevard d'Anfa, Quartier Gauthier, Casablanca</p>
+                <p class="text-gray-400 mb-2"><i class="fa-solid fa-phone gold-text w-6"></i> +212 600 00 00 00</p>
+                <p class="text-gray-400 mb-8"><i class="fa-brands fa-instagram gold-text w-6"></i> @atelier84_casablanca</p>
+                
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest mb-4">Horaires d'ouverture</h4>
+                <p class="text-gray-500 text-sm">Mardi à Samedi : 10:00 - 20:00<br>Dimanche : 10:00 - 15:00<br>Lundi : Fermé</p>
+            </div>
+            
+            <div class="h-64 md:h-full bg-gray-800 rounded-sm overflow-hidden grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-500 border border-gray-800">
+                <!-- Mapa de Casablanca -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0xda7d2a58b449195%3A0xc3ce703975abdc03!2sGauthier%2C%20Casablanca%2020250%2C%20Marruecos!5e0!3m2!1ses!2ses!4v1714000000000!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="text-center border-t border-gray-800 pt-8 text-xs text-gray-600 uppercase tracking-widest font-bold">
+            &copy; 2026 Atelier 84. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- LÓGICA DE JAVASCRIPT -->
+    <script>
+        function envoyerReservation(e) {
+            e.preventDefault(); 
+
+            const nom = document.getElementById('nom').value;
+            const prestation = document.getElementById('prestation').value;
+            const date = document.getElementById('date').value;
+            const heure = document.getElementById('heure').value;
+
+            // Formatear la fecha en francés
+            const dateFormatee = new Date(date).toLocaleDateString('fr-FR', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            });
+
+            // Número del negocio en Marruecos (+212)
+            const telephone = "212600000000";
+
+            // Mensaje formateado para WhatsApp en Francés
+            const message = `✂️ *NOUVELLE RÉSERVATION - ATELIER 84* ✂️\n\n` +
+                            `👤 *Client :* ${nom}\n` +
+                            `💈 *Prestation :* ${prestation}\n` +
+                            `📅 *Date :* ${dateFormatee}\n` +
+                            `⏰ *Créneau :* ${heure}\n\n` +
+                            `_Merci de me confirmer la disponibilité pour ce créneau. Cordialement._`;
+
+            // Abrir WhatsApp
+            window.open(`https://wa.me/${telephone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Bloquear fechas pasadas en el calendario
+        document.addEventListener("DOMContentLoaded", function() {
+            const aujourdhui = new Date().toISOString().split('T')[0];
+            document.getElementById('date').setAttribute('min', aujourdhui);
+        });
+    </script>
+</body>
+</html>

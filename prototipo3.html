@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smash Burger Co. | Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Animación suave para añadir al carrito */
+        .pop-animation { animation: pop 0.3s ease-in-out; }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased pb-24">
+
+    <!-- HEADER FLOTANTE -->
+    <header class="bg-white fixed top-0 w-full z-40 shadow-sm border-b border-gray-100">
+        <div class="px-4 h-16 flex items-center justify-between max-w-md mx-auto">
+            <h1 class="text-2xl font-black tracking-tighter text-gray-900 italic">SMASH<span class="text-yellow-500">CO.</span></h1>
+            
+            <div class="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full text-xs font-bold text-gray-600">
+                <i class="fa-solid fa-motorcycle text-yellow-500"></i>
+                <span>30-45 min</span>
+            </div>
+        </div>
+
+        <!-- CATEGORÍAS DESLIZANTES -->
+        <div class="bg-white py-3 px-4 shadow-sm overflow-x-auto no-scrollbar border-t border-gray-50">
+            <div class="flex gap-3 max-w-md mx-auto w-max">
+                <button onclick="filtrarMenu('Burgers')" class="cat-btn active bg-yellow-400 text-black px-5 py-2 rounded-full font-bold text-sm shadow-sm transition">🍔 Burgers</button>
+                <button onclick="filtrarMenu('Entrantes')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gray-200 px-5 py-2 rounded-full font-bold text-sm transition">🍟 Entrantes</button>
+                <button onclick="filtrarMenu('Bebidas')" class="cat-btn bg-gray-100 text-gray-600 hover:bg-gray-200 px-5 py-2 rounded-full font-bold text-sm transition">🥤 Bebidas</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER PROMOCIONAL -->
+    <div class="mt-32 max-w-md mx-auto px-4">
+        <div class="bg-gray-900 rounded-2xl p-5 relative overflow-hidden flex items-center justify-between shadow-lg">
+            <div class="relative z-10">
+                <span class="bg-yellow-400 text-black text-[10px] font-black uppercase px-2 py-1 rounded-md tracking-wider">Promo Semanal</span>
+                <h2 class="text-white text-xl font-black mt-2 leading-tight">Menú Doble Smash<br>+ Patatas</h2>
+                <p class="text-yellow-400 font-bold mt-1 text-lg">Solo 12.90€</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300" class="absolute right-[-20px] top-[-20px] w-40 h-40 object-cover rounded-full border-4 border-gray-800 opacity-80">
+        </div>
+    </div>
+
+    <!-- MENÚ / CATÁLOGO -->
+    <main class="max-w-md mx-auto px-4 pt-6">
+        <h3 id="cat-title" class="text-xl font-black mb-4 uppercase tracking-tight text-gray-800">🍔 Smash Burgers</h3>
+        
+        <div id="menu-container" class="flex flex-col gap-4">
+            <!-- Productos generados por JS -->
+        </div>
+    </main>
+
+    <!-- BOTÓN INFERIOR FIJO (VER CARRITO) -->
+    <div class="fixed bottom-0 w-full z-40 bg-white border-t border-gray-200 p-4 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+        <div class="max-w-md mx-auto">
+            <button onclick="toggleCart()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black py-4 rounded-xl shadow-lg transition flex items-center justify-between px-6">
+                <div class="flex items-center gap-2">
+                    <div class="bg-black text-white w-7 h-7 rounded-full flex items-center justify-center text-xs" id="cart-badge">0</div>
+                    <span>Ver Pedido</span>
+                </div>
+                <span id="cart-total-btn">0.00 €</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL DEL CARRITO / CHECKOUT -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 z-50 hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute bottom-0 w-full bg-white rounded-t-3xl max-h-[85vh] flex flex-col transform translate-y-full transition-transform duration-300" id="cart-drawer">
+            <!-- Cabecera Carrito -->
+            <div class="p-5 border-b border-gray-100 flex justify-between items-center bg-white rounded-t-3xl">
+                <h2 class="text-xl font-black text-gray-900">Tu Pedido</h2>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-black bg-gray-100 w-8 h-8 rounded-full font-bold">&times;</button>
+            </div>
+
+            <!-- Items -->
+            <div id="cart-items" class="p-5 overflow-y-auto flex-1 space-y-4 bg-gray-50"></div>
+
+            <!-- Checkout Form -->
+            <div class="p-5 bg-white border-t border-gray-200 shadow-[0_-10px_20px_rgba(0,0,0,0.03)]">
+                <!-- Tipo de entrega -->
+                <div class="flex bg-gray-100 p-1 rounded-xl mb-4">
+                    <button onclick="setDeliveryType('domicilio')" id="btn-domicilio" class="flex-1 bg-white shadow-sm py-2 rounded-lg text-sm font-bold text-gray-900 transition">🛵 A domicilio</button>
+                    <button onclick="setDeliveryType('recoger')" id="btn-recoger" class="flex-1 py-2 rounded-lg text-sm font-bold text-gray-500 hover:text-gray-900 transition">🚶 Recoger</button>
+                </div>
+
+                <div id="address-container" class="mb-4">
+                    <input type="text" id="direccion" placeholder="Calle, Número, Piso..." class="w-full bg-gray-50 border border-gray-200 text-gray-900 px-4 py-3 rounded-xl focus:outline-none focus:border-yellow-400 text-sm font-medium">
+                </div>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-500 font-bold">Total a pagar:</span>
+                    <span class="text-2xl font-black text-gray-900" id="cart-total-final">0.00 €</span>
+                </div>
+
+                <button onclick="sendOrder()" class="w-full bg-black text-white font-black py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-gray-800 transition">
+                    <i class="fa-brands fa-whatsapp text-green-400 text-xl"></i> Hacer Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const telefonoRestaurante = "34600000000"; 
+        let cart = [];
+        let deliveryType = 'domicilio'; // 'domicilio' o 'recoger'
+
+        // BASE DE DATOS DEL MENÚ
+        const menu = [
+            { id: 1, name: "Classic Smash", category: "Burgers", price: 8.90, desc: "Doble burger 90g, doble cheddar, cebolla caramelizada y salsa secreta.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300" },
+            { id: 2, name: "Truffle Bacon", category: "Burgers", price: 10.50, desc: "Doble smash, crujiente de bacon, queso havarti y mayonesa trufada.", img: "https://images.unsplash.com/photo-1594212586902-69f82d2c1613?w=300" },
+            { id: 3, name: "Spicy Oklahoma", category: "Burgers", price: 9.50, desc: "Smash con cebolla planchada, jalapeños, cheddar y salsa sriracha.", img: "https://images.unsplash.com/photo-1586816001966-79b736744398?w=300" },
+            { id: 4, name: "Patatas Fritas Caseras", category: "Entrantes", price: 3.50, desc: "Corte clásico, fritas en aceite de oliva con sal en escamas.", img: "https://images.unsplash.com/photo-1576107232684-1279f3908592?w=300" },
+            { id: 5, name: "Tequeños (5 ud)", category: "Entrantes", price: 5.90, desc: "Rellenos de queso fundido, acompañados de mermelada de frutos rojos.", img: "https://images.unsplash.com/photo-1628198622765-4d3753a39e80?w=300" },
+            { id: 6, name: "Coca-Cola Zero", category: "Bebidas", price: 2.00, desc: "Lata 33cl bien fría.", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" },
+            { id: 7, name: "Cerveza Artesana", category: "Bebidas", price: 3.50, desc: "IPA Local 33cl.", img: "https://images.unsplash.com/photo-1614316053355-08e137b03657?w=300" }
+        ];
+
+        // RENDERIZAR MENÚ
+        function filtrarMenu(categoria) {
+            // Estilos de los botones
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.innerText.includes(categoria)) {
+                    btn.className = "cat-btn active bg-yellow-400 text-black px-5 py-2 rounded-full font-bold text-sm shadow-sm transition";
+                } else {
+                    btn.className = "cat-btn bg-gray-100 text-gray-600 hover:bg-gray-200 px-5 py-2 rounded-full font-bold text-sm transition";
+                }
+            });
+
+            document.getElementById('cat-title').innerText = categoria === 'Burgers' ? '🍔 Smash Burgers' : (categoria === 'Entrantes' ? '🍟 Entrantes' : '🥤 Bebidas');
+
+            const filtrados = menu.filter(item => item.category === categoria);
+            const container = document.getElementById('menu-container');
+            
+            container.innerHTML = filtrados.map(item => `
+                <div class="bg-white rounded-2xl p-3 flex gap-4 shadow-sm border border-gray-100">
+                    <img src="${item.img}" class="w-24 h-24 object-cover rounded-xl shadow-sm">
+                    <div class="flex-1 flex flex-col justify-between py-1">
+                        <div>
+                            <h4 class="font-black text-gray-900 leading-tight">${item.name}</h4>
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">${item.desc}</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="font-black text-gray-900">${item.price.toFixed(2)}€</span>
+                            <button onclick="addToCart(${item.id}, this)" class="bg-gray-100 hover:bg-yellow-400 text-black w-8 h-8 rounded-full flex items-center justify-center font-bold transition">
+                                <i class="fa-solid fa-plus text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // LÓGICA CARRITO
+        function addToCart(id, btnElement) {
+            const producto = menu.find(p => p.id === id);
+            const item = cart.find(i => i.id === id);
+            
+            if (item) item.qty++;
+            else cart.push({ ...producto, qty: 1 });
+            
+            // Animación visual del botón (Feedback)
+            btnElement.classList.add('bg-yellow-400', 'pop-animation');
+            btnElement.innerHTML = '<i class="fa-solid fa-check text-sm"></i>';
+            setTimeout(() => {
+                btnElement.classList.remove('bg-yellow-400', 'pop-animation');
+                btnElement.innerHTML = '<i class="fa-solid fa-plus text-sm"></i>';
+            }, 500);
+
+            actualizarCarritoUI();
+        }
+
+        function cambiarCantidad(id, delta) {
+            const item = cart.find(i => i.id === id);
+            item.qty += delta;
+            if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            actualizarCarritoUI();
+        }
+
+        function actualizarCarritoUI() {
+            let total = 0, count = 0;
+            const container = document.getElementById('cart-items');
+            
+            const html = cart.map(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+                return `
+                <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-gray-900">${item.name}</h4>
+                        <span class="font-black text-gray-900 text-sm">${(item.price * item.qty).toFixed(2)}€</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-100 rounded-lg p-1 px-2">
+                        <button onclick="cambiarCantidad(${item.id}, -1)" class="text-gray-500 font-black w-6 text-lg hover:text-black">-</button>
+                        <span class="font-bold text-sm w-4 text-center">${item.qty}</span>
+                        <button onclick="cambiarCantidad(${item.id}, 1)" class="text-gray-500 font-black w-6 text-lg hover:text-black">+</button>
+                    </div>
+                </div>`;
+            }).join('');
+
+            container.innerHTML = html || `<div class="text-center text-gray-400 py-10 font-bold">Carrito vacío 🍔</div>`;
+            
+            document.getElementById('cart-badge').innerText = count;
+            document.getElementById('cart-total-btn').innerText = `${total.toFixed(2)} €`;
+            document.getElementById('cart-total-final').innerText = `${total.toFixed(2)} €`;
+        }
+
+        // CONTROL DEL MODAL Y ENTREGA
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            const drawer = document.getElementById('cart-drawer');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    drawer.classList.remove('translate-y-full');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                drawer.classList.add('translate-y-full');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function setDeliveryType(tipo) {
+            deliveryType = tipo;
+            const dirInput = document.getElementById('address-container');
+            const btnDom = document.getElementById('btn-domicilio');
+            const btnRec = document.getElementById('btn-recoger');
+
+            if (tipo === 'domicilio') {
+                dirInput.style.display = 'block';
+                btnDom.className = 'flex-1 bg-white shadow-sm py-2 rounded-lg text-sm font-bold text-gray-900 transition';
+                btnRec.className = 'flex-1 py-2 rounded-lg text-sm font-bold text-gray-500 hover:text-gray-900 transition';
+            } else {
+                dirInput.style.display = 'none';
+                btnRec.className = 'flex-1 bg-white shadow-sm py-2 rounded-lg text-sm font-bold text-gray-900 transition';
+                btnDom.className = 'flex-1 py-2 rounded-lg text-sm font-bold text-gray-500 hover:text-gray-900 transition';
+            }
+        }
+
+        // ENVÍO A WHATSAPP
+        function sendOrder() {
+            if (cart.length === 0) return alert("Añade algún producto para hacer el pedido.");
+            
+            const direccion = document.getElementById('direccion').value;
+            if (deliveryType === 'domicilio' && direccion.trim() === '') {
+                return alert("Por favor, introduce tu dirección de entrega.");
+            }
+
+            let ticket = `🍔 *NUEVO PEDIDO - SMASH CO.* 🍔\n\n`;
+            ticket += deliveryType === 'domicilio' 
+                ? `🛵 *Tipo:* A domicilio\n📍 *Dirección:* ${direccion}\n\n`
+                : `🚶 *Tipo:* Recoger en local\n\n`;
+            
+            ticket += `🧾 *PEDIDO:*\n`;
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                ticket += `▪ ${item.qty}x ${item.name} - ${(item.price * item.qty).toFixed(2)}€\n`;
+            });
+
+            ticket += `\n💰 *TOTAL A PAGAR: ${total.toFixed(2)}€*`;
+            ticket += deliveryType === 'domicilio' ? `\n💳 _(Pago en efectivo al repartidor)_` : `\n💳 _(Pago en el local)_`;
+
+            window.open(`https://wa.me/${telefonoRestaurante}?text=${encodeURIComponent(ticket)}`, '_blank');
+        }
+
+        // Iniciar
+        filtrarMenu('Burgers');
+    </script>
+</body>
+</html>

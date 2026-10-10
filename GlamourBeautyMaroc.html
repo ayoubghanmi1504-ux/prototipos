@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour Beauty Maroc | Cosmétiques & Soins</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .theme-accent { background-color: #D81B60; }
+        .text-accent { color: #D81B60; }
+        .hover-accent:hover { background-color: #AD1457; }
+        .border-accent { border-color: #D81B60; }
+        
+        /* Animación para el botón flotante */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float { animation: pulse-ring 2s infinite; }
+        
+        /* Efecto al añadir al carrito */
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); color: #D81B60; }
+            100% { transform: scale(1); }
+        }
+        .pop-effect { animation: pop 0.4s ease-out; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased transition-all duration-300">
+
+    <!-- HEADER SPA -->
+    <header class="bg-gray-900 fixed top-0 w-full z-40 shadow-lg border-b border-gray-800 h-[80px] md:h-[90px]">
+        <div class="container mx-auto px-4 h-full flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 p-0.5">
+                    <img src="https://ui-avatars.com/api/?name=GB&background=111&color=fff" class="w-full h-full rounded-full border-2 border-gray-900">
+                </div>
+                <h1 class="text-xl md:text-2xl font-black text-white tracking-tighter">GLAMOUR<span class="text-accent">BEAUTY</span></h1>
+            </a>
+            
+            <nav class="hidden md:flex gap-8 text-sm font-bold text-gray-300 uppercase tracking-wider">
+                <a href="#catalogo" class="hover:text-white transition" data-i18n="navCatalog">Boutique</a>
+                <a href="#offres" class="text-accent hover:text-white transition" data-i18n="navOffers">Promos 🔥</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <button onclick="toggleLanguage()" class="bg-gray-800 border border-gray-700 text-white font-bold rounded-full px-3 py-1.5 text-[10px] md:text-xs transition hover:bg-gray-700 shadow-sm">
+                    <span id="lang-indicator">عربي</span>
+                </button>
+
+                <button onclick="toggleCart()" class="relative bg-gray-800 border border-gray-700 hover:bg-gray-700 text-white p-2.5 rounded-full transition shadow-sm" id="cart-btn-header">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 theme-accent text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative w-full h-[60vh] min-h-[450px] md:min-h-[600px] flex items-center mt-[80px] md:mt-[90px] overflow-hidden bg-gray-900">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bf85033e5a?q=80&w=2000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover z-0 opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-transparent z-10 w-full md:w-3/4"></div>
+
+        <div class="container mx-auto px-5 relative z-20 w-full">
+            <div class="max-w-2xl border-l-4 border-accent pl-6">
+                <span class="theme-accent text-white font-black px-3 py-1 rounded text-[10px] uppercase tracking-widest mb-4 inline-block shadow-lg" data-i18n="heroTag">Nouvel Arrivage 2026</span>
+                <h1 class="text-4xl md:text-7xl font-black mb-4 text-white leading-tight uppercase tracking-tight" data-i18n="heroTitle">La Beauté <br><span class="text-accent">À Votre Portée.</span></h1>
+                <p class="text-gray-300 mb-8 text-sm md:text-lg font-medium max-w-md leading-relaxed" data-i18n="heroDesc">Tous vos produits de beauté, soins capillaires et maquillage authentiques. Livraison rapide partout au Maroc.</p>
+                
+                <div class="flex gap-4">
+                    <a href="#catalogo" class="theme-accent text-white py-3.5 px-8 rounded-full font-black hover-accent transition shadow-[0_0_20px_rgba(216,27,96,0.4)] uppercase tracking-wider text-xs md:text-sm inline-block" data-i18n="heroBtn">Commander Maintenant</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GARANTÍAS -->
+    <div class="bg-white border-y border-gray-200 py-5 shadow-sm">
+        <div class="container mx-auto grid grid-cols-3 gap-2 text-center max-w-5xl">
+            <div class="flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-truck-fast text-accent text-2xl"></i><p class="font-black text-gray-800 text-[10px] md:text-xs uppercase tracking-wider" data-i18n="guar1">Livraison Maroc</p></div>
+            <div class="flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-hand-holding-dollar text-accent text-2xl"></i><p class="font-black text-gray-800 text-[10px] md:text-xs uppercase tracking-wider" data-i18n="guar2">Paiement à la Livraison</p></div>
+            <div class="flex flex-col items-center justify-center gap-2"><i class="fa-solid fa-store text-accent text-2xl"></i><p class="font-black text-gray-800 text-[10px] md:text-xs uppercase tracking-wider" data-i18n="guar3">Boutique Casablanca</p></div>
+        </div>
+    </div>
+
+    <!-- CATÁLOGO DINÁMICO -->
+    <section id="catalogo" class="py-16 bg-gray-50 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tighter" data-i18n="catalogTitle">Nos Produits</h2>
+                <div class="w-16 h-1 theme-accent mx-auto mt-3 rounded-full mb-8"></div>
+                
+                <div class="max-w-2xl mx-auto space-y-4">
+                    <div class="relative">
+                        <input type="text" id="search-input" oninput="filterProducts()" placeholder="🔍 Chercher un produit..." class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-[#D81B60] shadow-sm text-sm" data-i18n="searchPlaceholder">
+                    </div>
+                    
+                    <div class="flex items-center justify-center gap-2 overflow-x-auto no-scrollbar py-2">
+                        <button onclick="filterCategoryTab('all')" class="category-btn active px-4 py-2 rounded-full text-[10px] md:text-xs font-bold theme-accent text-white shadow-sm transition-all uppercase tracking-wider" data-cat="all">Tout</button>
+                        <button onclick="filterCategoryTab('Appareils')" class="category-btn px-4 py-2 rounded-full text-[10px] md:text-xs font-bold bg-gray-200 text-gray-700 hover:bg-gray-300 shadow-sm transition-all uppercase tracking-wider" data-cat="Appareils" data-i18n="catAppareils">Appareils</button>
+                        <button onclick="filterCategoryTab('Soins')" class="category-btn px-4 py-2 rounded-full text-[10px] md:text-xs font-bold bg-gray-200 text-gray-700 hover:bg-gray-300 shadow-sm transition-all uppercase tracking-wider" data-cat="Soins" data-i18n="catSoins">Soins</button>
+                        <button onclick="filterCategoryTab('Maquillage')" class="category-btn px-4 py-2 rounded-full text-[10px] md:text-xs font-bold bg-gray-200 text-gray-700 hover:bg-gray-300 shadow-sm transition-all uppercase tracking-wider" data-cat="Maquillage" data-i18n="catMakeup">Maquillage</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="catalog-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER CON MAPA -->
+    <footer class="bg-gray-900 text-gray-300 border-t border-gray-800 pt-16 pb-24 md:pb-8">
+        <div class="container mx-auto px-5 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <h3 class="text-xl font-black text-white tracking-tighter mb-4">GLAMOUR<span class="text-accent">BEAUTY</span></h3>
+                    <p class="text-sm leading-relaxed text-gray-400" data-i18n="footerAboutText">
+                        Votre destination numéro 1 pour les cosmétiques et soins au Maroc. Qualité, authenticité et service client irréprochable.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4" data-i18n="footerLinksTitle">Liens Utiles</h4>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li><a href="#" class="hover:text-accent transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px]"></i> <span data-i18n="footerFaq">Questions Fréquentes (FAQ)</span></a></li>
+                        <li><a href="#" class="hover:text-accent transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px]"></i> <span data-i18n="footerShipping">Politique de Livraison</span></a></li>
+                        <li><a href="#" class="hover:text-accent transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px]"></i> <span data-i18n="footerReturns">Retours & Échanges</span></a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4" data-i18n="footerContactTitle">Contact & Réseaux</h4>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-location-dot text-accent text-lg w-5 text-center"></i>
+                            <span>Casablanca, Maroc</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-whatsapp text-accent text-xl w-5 text-center"></i>
+                            <span dir="ltr">+212 600 00 00 00</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6">
+                        <a href="https://www.instagram.com/glamourbeauty.maroc" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:scale-105 transition shadow-lg w-full justify-center md:justify-start md:w-auto">
+                            <i class="fa-brands fa-instagram text-xl"></i> @glamourbeauty.maroc
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mapa interactivo universal -->
+                <div class="h-48 md:h-full min-h-[200px] bg-gray-800 rounded-xl overflow-hidden grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-500 border border-gray-800 shadow-inner">
+                    <iframe src="https://maps.google.com/maps?q=Casablanca,%20Maroc&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] md:text-xs font-bold tracking-widest uppercase text-gray-500" data-i18n="footerRights">&copy; 2026 Glamour Beauty Maroc. Tous droits réservés.</p>
+                <div class="flex gap-4 text-2xl text-gray-600">
+                    <i class="fa-brands fa-cc-visa opacity-50 hover:opacity-100 transition"></i>
+                    <i class="fa-brands fa-cc-mastercard opacity-50 hover:opacity-100 transition"></i>
+                    <i class="fa-solid fa-money-bill-wave opacity-50 hover:opacity-100 transition" title="Paiement à la livraison"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DETALLES PRODUCTO -->
+    <div id="product-modal-overlay" onclick="closeProductModal()" class="fixed inset-0 bg-black/80 z-[60] hidden backdrop-blur-sm transition-opacity"></div>
+    <div id="product-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white rounded-2xl z-[70] shadow-2xl hidden overflow-hidden flex flex-col">
+        <div class="relative bg-gray-100 h-64">
+            <button onclick="closeProductModal()" class="absolute top-3 right-3 bg-white/90 hover:bg-white text-gray-900 rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg shadow-lg z-10">&times;</button>
+            <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+            <span id="modal-tag" class="absolute bottom-3 left-3 theme-accent text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest shadow-md hidden"></span>
+        </div>
+        <div class="p-5 flex-1 space-y-3">
+            <span id="modal-category" class="text-gray-400 text-[10px] font-black uppercase tracking-widest"></span>
+            <h3 id="modal-title" class="text-xl font-black text-gray-900 leading-tight"></h3>
+            <div class="flex items-center gap-2">
+                <p id="modal-price" class="text-2xl font-black text-accent"></p>
+                <p id="modal-oldprice" class="text-sm text-gray-400 line-through hidden"></p>
+            </div>
+            <div>
+                <h4 class="font-bold text-xs text-gray-800 uppercase tracking-wider mb-1 mt-2" data-i18n="modalDescTitle">Description:</h4>
+                <p id="modal-desc" class="text-gray-600 text-xs leading-relaxed"></p>
+            </div>
+        </div>
+        <div class="p-4 bg-gray-50 border-t border-gray-100">
+            <button id="modal-add-btn" class="w-full theme-accent hover-accent text-white font-black py-3.5 rounded-xl transition-all shadow-lg text-center uppercase tracking-wider text-xs flex items-center justify-center gap-2">
+                <i class="fa-solid fa-cart-plus"></i> <span data-i18n="modalAddBtn">Ajouter au Panier</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- PANEL LATERAL DEL CARRITO -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
+        <div class="p-5 bg-gray-900 text-white flex justify-between items-center border-b border-gray-800">
+            <h3 class="text-lg font-black uppercase tracking-widest"><i class="fa-solid fa-bag-shopping text-accent mr-2"></i> <span data-i18n="cartTitle">Votre Panier</span></h3>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+        
+        <div id="cart-items" class="p-4 flex-1 overflow-y-auto space-y-3 bg-gray-50"></div>
+
+        <div class="p-5 bg-white border-t border-gray-200 shadow-[0_-10px_20px_rgba(0,0,0,0.03)]">
+            <div class="flex justify-between items-center font-black text-lg mb-4">
+                <span class="text-gray-900" data-i18n="cartTotalLabel">Total:</span>
+                <span class="text-accent text-2xl"><span id="cart-total">0</span> DH</span>
+            </div>
+            
+            <div class="space-y-3 mb-4">
+                <input type="text" id="client-name" class="w-full px-4 py-3 text-sm border border-gray-200 bg-gray-50 rounded-xl outline-none focus:border-[#D81B60]" data-i18n="inputName" placeholder="Nom et Prénom">
+                <input type="text" id="client-city" class="w-full px-4 py-3 text-sm border border-gray-200 bg-gray-50 rounded-xl outline-none focus:border-[#D81B60]" data-i18n="inputCity" placeholder="Ville de livraison">
+            </div>
+            
+            <button onclick="sendWhatsAppOrder()" class="w-full bg-[#25D366] hover:bg-[#20b858] text-white font-black py-4 rounded-xl shadow-lg transition flex justify-center items-center gap-2 uppercase tracking-wider text-sm">
+                <i class="fa-brands fa-whatsapp text-xl"></i> <span data-i18n="btnOrder">Commander via WhatsApp</span>
+            </button>
+        </div>
+    </div>
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/60 hidden z-40 backdrop-blur-sm"></div>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="#" onclick="openWhatsAppChat(event)" class="whatsapp-float fixed bottom-6 left-6 md:bottom-10 md:left-10 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-30 hover:scale-110 transition-transform border-2 border-white">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- JAVASCRIPT MOTOR -->
+    <script>
+        const PHONE = "212000000000"; 
+
+        const dictionary = {
+            fr: {
+                navCatalog: "Boutique", navOffers: "Promos 🔥",
+                heroTag: "Nouvel Arrivage 2026", heroTitle: "La Beauté <br><span class='text-accent'>À Votre Portée.</span>",
+                heroDesc: "Tous vos produits de beauté, soins capillaires et maquillage authentiques. Livraison rapide partout au Maroc.",
+                heroBtn: "Commander Maintenant",
+                guar1: "Livraison Maroc", guar2: "Paiement à la Livraison", guar3: "Boutique Casablanca",
+                catalogTitle: "Nos Produits", searchPlaceholder: "🔍 Chercher un produit...",
+                catAppareils: "Appareils", catSoins: "Soins", catMakeup: "Maquillage",
+                cartTitle: "Votre Panier", cartTotalLabel: "Total:", btnOrder: "Commander via WhatsApp", btnAdd: "Ajouter",
+                inputName: "Nom et Prénom", inputCity: "Ville de livraison",
+                modalDescTitle: "Description:", modalAddBtn: "Ajouter au Panier",
+                footerAboutText: "Votre destination numéro 1 pour les cosmétiques et soins au Maroc. Qualité, authenticité et service client irréprochable.",
+                footerLinksTitle: "Liens Utiles", footerFaq: "Questions Fréquentes (FAQ)", footerShipping: "Politique de Livraison", footerReturns: "Retours & Échanges",
+                footerContactTitle: "Contact & Réseaux", footerRights: "© 2026 Glamour Beauty Maroc. Tous droits réservés.",
+                langToggle: "عربي", dir: "ltr"
+            },
+            ar: {
+                navCatalog: "المتجر", navOffers: "عروض 🔥",
+                heroTag: "تشكيلة 2026", heroTitle: "الجمال <br><span class='text-accent'>في متناول يدك.</span>",
+                heroDesc: "جميع منتجات التجميل، العناية بالشعر والمكياج الأصلية. التوصيل سريع لجميع مدن المغرب.",
+                heroBtn: "اطلب الآن",
+                guar1: "توصيل للمغرب", guar2: "الدفع عند الاستلام", guar3: "محل بالدار البيضاء",
+                catalogTitle: "منتجاتنا", searchPlaceholder: "🔍 ابحث عن منتج...",
+                catAppareils: "أجهزة", catSoins: "عناية", catMakeup: "مكياج",
+                cartTitle: "سلة المشتريات", cartTotalLabel: "المجموع:", btnOrder: "الطلب عبر واتساب", btnAdd: "إضافة",
+                inputName: "الاسم الكامل", inputCity: "مدينة التوصيل",
+                modalDescTitle: "الوصف:", modalAddBtn: "إضافة إلى السلة",
+                footerAboutText: "وجهتك الأولى لمستحضرات التجميل والعناية في المغرب. جودة، أصالة وخدمة عملاء لا تشوبها شائبة.",
+                footerLinksTitle: "روابط مفيدة", footerFaq: "الأسئلة الشائعة (FAQ)", footerShipping: "سياسة التوصيل", footerReturns: "الاستبدال والاسترجاع",
+                footerContactTitle: "تواصل معنا", footerRights: "© 2026 Glamour Beauty Maroc. جميع الحقوق محفوظة.",
+                langToggle: "Français", dir: "rtl"
+            }
+        };
+
+        // FOTOS 100% CORREGIDAS
+        const products = [
+            { id: 1, name: { fr: "Appareil Nettoyage Visage", ar: "جهاز تنظيف الوجه" }, price: 149, oldPrice: 199, category: "Appareils", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=400", tag: "PROMO", desc: { fr: "Nettoyage en profondeur des pores, élimine les points noirs. Rechargeable USB.", ar: "تنظيف عميق للمسام وإزالة الرؤوس السوداء. قابل للشحن عبر USB."} },
+            { id: 2, name: { fr: "Coffret Pinceaux Bella Rosa", ar: "طقم فرش بيلا روزا" }, price: 250, category: "Maquillage", img: "https://images.unsplash.com/photo-1590156546946-ce55a12a6a5d?auto=format&fit=crop&w=400", tag: "CADEAU", desc: { fr: "Set complet professionnel avec pochette de rangement élégante.", ar: "طقم احترافي متكامل مع حقيبة تخزين أنيقة."} },
+            { id: 3, name: { fr: "Lisseur MaxSalon 750°C", ar: "مملس الشعر 750 درجة" }, price: 299, category: "Appareils", img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=400", desc: { fr: "Plaques en céramique avancées pour un lissage parfait sans abîmer les cheveux.", ar: "ألواح سيراميك متطورة لتمليس مثالي دون إتلاف الشعر."} },
+            { id: 4, name: { fr: "Gel Douche Tulipán Negro", ar: "جل استحمام توليبان نيجرو" }, price: 45, category: "Soins", img: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?auto=format&fit=crop&w=400", desc: { fr: "Parfum longue durée, respecte le pH de la peau. Format 650ml.", ar: "عطر يدوم طويلاً، يحترم درجة حموضة البشرة. حجم 650 مل."} },
+            { id: 5, name: { fr: "Pack Maquillage Complet", ar: "باقة مكياج متكاملة" }, price: 350, category: "Maquillage", img: "https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=400", tag: "HOT", desc: { fr: "Inclut fond de teint, mascara, palette ombres à paupières et rouge à lèvres.", ar: "يشمل كريم أساس، ماسكارا، باليت ظلال العيون وأحمر شفاه."} },
+            { id: 6, name: { fr: "Crème Capillaire Elegance", ar: "كريم الشعر إيليجانس" }, price: 85, category: "Soins", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400", desc: { fr: "Masque réparateur à la Kératine pour cheveux abîmés et secs.", ar: "ماسك معالج بالكيراتين للشعر التالف والجاف."} }
+        ];
+
+        let currentLang = 'fr';
+        let cart = [];
+        let selectedCategory = 'all';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'ar' : 'fr';
+            document.documentElement.dir = dictionary[currentLang].dir;
+            
+            const sidebar = document.getElementById('cart-sidebar');
+            const btnFloat = document.querySelector('.whatsapp-float');
+
+            if(currentLang === 'ar') {
+                sidebar.classList.replace('right-0', 'left-0');
+                sidebar.classList.replace('translate-x-full', '-translate-x-full');
+                btnFloat.classList.replace('left-6', 'right-6');
+                btnFloat.classList.replace('md:left-10', 'md:right-10');
+            } else {
+                sidebar.classList.replace('left-0', 'right-0');
+                sidebar.classList.replace('-translate-x-full', 'translate-x-full');
+                btnFloat.classList.replace('right-6', 'left-6');
+                btnFloat.classList.replace('md:right-10', 'md:left-10');
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dictionary[currentLang][key]) {
+                    if (el.tagName === 'INPUT') el.placeholder = dictionary[currentLang][key];
+                    else el.innerHTML = dictionary[currentLang][key];
+                }
+            });
+
+            document.getElementById('lang-indicator').innerText = dictionary[currentLang].langToggle;
+            filterProducts(); 
+            updateCartUI();
+        }
+
+        function filterCategoryTab(category) {
+            selectedCategory = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.classList.add('theme-accent', 'text-white');
+                    btn.classList.remove('bg-gray-200', 'text-gray-700');
+                } else {
+                    btn.classList.remove('theme-accent', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                }
+            });
+            filterProducts();
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const container = document.getElementById('catalog-container');
+            
+            const filtered = products.filter(p => {
+                const matchCat = selectedCategory === 'all' || p.category === selectedCategory;
+                const matchQuery = p.name[currentLang].toLowerCase().includes(query);
+                return matchCat && matchQuery;
+            });
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 text-gray-400 font-bold uppercase text-xs tracking-widest">${currentLang === 'fr' ? 'Aucun produit trouvé' : 'لم يتم العثور على منتجات'}</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(p => `
+                <div class="bg-white rounded-2xl p-3 shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col cursor-pointer" onclick="openProductModal(${p.id})">
+                    <div class="relative h-32 md:h-48 rounded-xl overflow-hidden mb-3 bg-gray-100">
+                        ${p.tag ? `<span class="absolute top-2 right-2 theme-accent text-white text-[9px] font-black px-2 py-1 rounded uppercase z-10 tracking-widest shadow-md">${p.tag}</span>` : ''}
+                        <img src="${p.img}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <span class="text-[9px] text-gray-400 font-black uppercase tracking-widest">${dictionary[currentLang]['cat'+p.category] || p.category}</span>
+                    <h3 class="font-bold text-sm md:text-base text-gray-900 line-clamp-2 leading-tight mb-2 flex-1 mt-1">${p.name[currentLang]}</h3>
+                    <div class="mt-auto flex justify-between items-end">
+                        <div>
+                            ${p.oldPrice ? `<span class="text-xs text-gray-400 line-through block">${p.oldPrice} DH</span>` : ''}
+                            <span class="text-accent font-black text-lg md:text-xl">${p.price} DH</span>
+                        </div>
+                        <button onclick="event.stopPropagation(); addToCart(${p.id}, this)" class="bg-gray-900 hover:bg-[#D81B60] text-white text-xs font-black w-8 h-8 md:w-auto md:px-3 md:py-2 rounded-lg transition-colors flex items-center justify-center gap-1 shadow-md">
+                            <i class="fa-solid fa-plus"></i> <span class="hidden md:inline">${dictionary[currentLang].btnAdd}</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openProductModal(id) {
+            const p = products.find(item => item.id === id);
+            document.getElementById('modal-img').src = p.img;
+            document.getElementById('modal-title').innerText = p.name[currentLang];
+            document.getElementById('modal-price').innerText = `${p.price} DH`;
+            document.getElementById('modal-desc').innerText = p.desc[currentLang];
+            
+            const catElem = document.getElementById('modal-category');
+            catElem.innerText = dictionary[currentLang]['cat'+p.category] || p.category;
+
+            const oldPriceElem = document.getElementById('modal-oldprice');
+            if(p.oldPrice) {
+                oldPriceElem.innerText = `${p.oldPrice} DH`;
+                oldPriceElem.classList.remove('hidden');
+            } else {
+                oldPriceElem.classList.add('hidden');
+            }
+
+            const tagElem = document.getElementById('modal-tag');
+            if(p.tag) {
+                tagElem.innerText = p.tag;
+                tagElem.classList.remove('hidden');
+            } else {
+                tagElem.classList.add('hidden');
+            }
+            
+            document.getElementById('modal-add-btn').onclick = (e) => { 
+                addToCart(p.id, e.currentTarget); 
+                setTimeout(closeProductModal, 300); 
+            };
+            
+            document.getElementById('product-modal-overlay').classList.remove('hidden');
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal-overlay').classList.add('hidden');
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            const transformClass = currentLang === 'ar' ? '-translate-x-full' : 'translate-x-full';
+            
+            if(sidebar.classList.contains(transformClass)) {
+                sidebar.classList.remove(transformClass);
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sidebar.classList.add(transformClass);
+                overlay.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function addToCart(id, btnElem) {
+            const product = products.find(p => p.id === id);
+            const item = cart.find(i => i.id === id);
+            if(item) item.qty++;
+            else cart.push({ ...product, qty: 1 });
+            
+            updateCartUI();
+
+            const cartIcon = document.getElementById('cart-btn-header');
+            cartIcon.classList.add('pop-effect');
+            if(btnElem) btnElem.innerHTML = '<i class="fa-solid fa-check"></i>';
+            
+            setTimeout(() => {
+                cartIcon.classList.remove('pop-effect');
+                if(btnElem) btnElem.innerHTML = `<i class="fa-solid fa-plus"></i> <span class="hidden md:inline">${dictionary[currentLang].btnAdd}</span>`;
+            }, 400);
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if(item) {
+                item.qty += change;
+                if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            let totalDH = 0, totalQty = 0;
+
+            const html = cart.map(item => {
+                totalDH += item.price * item.qty;
+                totalQty += item.qty;
+                return `
+                <div class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+                    <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg border border-gray-50">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-xs text-gray-900 line-clamp-1 uppercase tracking-tight">${item.name[currentLang]}</h4>
+                        <span class="text-accent font-black text-sm">${item.price * item.qty} DH</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-gray-50 rounded-lg p-1 border">
+                        <button onclick="updateQty(${item.id}, -1)" class="w-6 h-6 text-gray-500 font-black hover:text-black">-</button>
+                        <span class="text-xs font-black w-4 text-center">${item.qty}</span>
+                        <button onclick="updateQty(${item.id}, 1)" class="w-6 h-6 text-gray-500 font-black hover:text-black">+</button>
+                    </div>
+                </div>`;
+            }).join('');
+
+            container.innerHTML = html || `<p class="text-center text-gray-400 mt-10 text-xs font-bold uppercase tracking-widest">${currentLang === 'fr' ? 'Vide' : 'فارغ'}</p>`;
+            document.getElementById('cart-count').innerText = totalQty;
+            document.getElementById('cart-total').innerText = totalDH;
+        }
+
+        function sendWhatsAppOrder() {
+            if(cart.length === 0) return alert(currentLang === 'fr' ? "Le panier est vide" : "السلة فارغة");
+            
+            const name = document.getElementById('client-name').value || (currentLang === 'fr' ? "Non spécifié" : "غير محدد");
+            const city = document.getElementById('client-city').value || (currentLang === 'fr' ? "Non spécifiée" : "غير محدد");
+
+            let text = currentLang === 'fr' 
+                ? `🛍️ *GLAMOUR BEAUTY - NOUVELLE COMMANDE*\n\n👤 *Client:* ${name}\n📍 *Ville:* ${city}\n\n📦 *DÉTAILS:*\n`
+                : `🛍️ *GLAMOUR BEAUTY - طلب جديد*\n\n👤 *العميل:* ${name}\n📍 *المدينة:* ${city}\n\n📦 *التفاصيل:*\n`;
+
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                text += `▪ ${item.qty}x ${item.name[currentLang]} - ${item.price * item.qty} DH\n`;
+            });
+
+            text += `\n💰 *TOTAL: ${total} DH*`;
+
+            window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function openWhatsAppChat(e) {
+            e.preventDefault();
+            const msg = currentLang === 'fr' ? "Bonjour Glamour Beauty, j'ai besoin de renseignements." : "مرحبا Glamour Beauty، أحتاج إلى بعض المعلومات.";
+            window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        filterProducts();
+    </script>
+</body>
+</html>
